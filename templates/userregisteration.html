@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST", action="{% url 'accounts:register' %}">
+        {% csrf_token %}
+        <input type="email" name="registration_email" id="user_registeration_email" >
+        <input type="password" name="registeration_password" id="user_registeration_password">
+        <input type="number" name="registeration_phone_number" id="user_registeration_phone_number">
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
