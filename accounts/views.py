@@ -47,13 +47,58 @@ def login(request):
     if request.method == "POST":
         username = request.POST.get('username_field')
         password = request.POST.get('password_field')
-        logged_in_user = auth_instance.sign_in_with_email_and_password(username, password)
-        print(logged_in_user)
+        try:
+            logged_in_user = auth_instance.sign_in_with_email_and_password(username, password)
+            print(logged_in_user)
+
+        except:
+            print("login failed")
     return render(request, 'login2.html')
 
 #=================================== get_user_data ================================================================
-def get_data (request):
-    userdata = firebase_admin.auth.get_user_by_email('coderishiraj@gmail.com')
-    return  render(request, 'userdata.html', {'userdata': userdata})
+
+def getdata(request):
+    user = firebase_admin.auth.get_user_by_email('coderishiraj@gmail.com')
+    return render (request, 'userdata.html', {'userdata': user})
+
+#======================================user data =================================================================
+'''class human():
+    def __init__(self, name, mobile_number, email, upiaddress):
+        self.name = name
+        self.mobile_number = mobile_number
+        self.email = email
+        self.upiaddress = upiaddress
+
+    def get_user_data(self, email):
+        user_data = firebase_admin.auth.get_user_by_email(email)
+        return (user_data)
+
+class buyers(human):
+    def __init__(self):
+        pass
+
+    def metadata(self):
+        pass
+
+'''
+
+class logged_in_user():
+    def __init__(self, kind, localId, email, displayName, idToken, registrered, refreshToken ):
+        self.kind = kind
+        self.localId = localId
+        self.email = email
+        self.displayName
+        self.idToken = idToken
+        self.registered = registrered
+        self.refeshToken = refreshToken
+
+
+
+
+
+
+
+
+
 
 

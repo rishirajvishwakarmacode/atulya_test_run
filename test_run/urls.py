@@ -21,12 +21,12 @@ from django.urls import include
 
 #=====================================Home page===============================================
 def home(request):
-    return HttpResponse('<h1>This is Home page</h1> ')
+    return render(request, 'index.html')
 #====================================================, =========================================
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
-    path('accounts/', include('accounts.urls', namespace='accounts'))
+    path('accounts/', include('accounts.urls', namespace='accounts')),
 ]

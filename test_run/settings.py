@@ -29,6 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'retailer',
+    'wholesaler',
+    'manufacturer',
 ]
 
 MIDDLEWARE = [
@@ -67,9 +70,14 @@ WSGI_APPLICATION = 'test_run.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'atulya_database',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': 'Password1@mysql',
     }
+
 }
 
 
