@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+</head>
+<body>
+    <form action={%url 'accounts:register'%} method="post">
+        {% csrf_token %}
+        <label for="registration_email" >Enter your Email</label>
+        <input type="email" id="registration_email" name="registration_email">
+        <label for="type_dropdown" >Select the appropriate type</label>
+        <select name="type" id="type_dropdown" >
+          <option value="retailer">Retailer</option>
+          <option value="wholesaler">Wholesaler</option>
+          <option value="manufacturer">Manufacturer</option>
+          <option value="admin">Admin</option>
+        </select>
+        <label for="password_field" >Enter your Password</label>
+        <input type="password" id="password_field" name="password_field">
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

@@ -62,6 +62,8 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.customUser'
+
 WSGI_APPLICATION = 'test_run.wsgi.application'
 
 
