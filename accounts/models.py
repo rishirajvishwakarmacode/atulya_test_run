@@ -56,7 +56,7 @@ class customUser(AbstractUser):
     REQUIRED_FIELDS = ['type']
     objects = customUsermanager()
     def __str__(self):
-        return self.email
+        return (str(self.user_id))
     def has_perm(self, perm, obj=None):
         return self.is_admin
     def has_module_perms(self, app_label):

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Retailer Dashboard {% endblock title %}
+
+{% block body %}
+    <a href="{% url 'accounts:logout' %}">
+        <button>Logout</button>
+    </a>
+    <a href="{% url 'retailer:inventory' %}">
+        <button>Inventory</button>
+    </a>
+    <div id="wholesaler_list">
+
+    </div>
+
+    <div id="operation_area">
+        <h3> {{ user_name }} </h3>
+    </div>
+
+    <div id="customer_list">
+    </div>
+{% endblock body %}

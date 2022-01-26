@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>store_information</title>
+</head>
+<body>
+    <form method="POST" action="{% url 'retailer:fill_details' %}">
+        {% csrf_token %}
+
+        {{ form}}
+
+{#        <label for="retail_store_gst">Enter store GST number</label>#}
+{#        <input type="text" name="retail_store_gst" id="retail_store_gst">#}
+{##}
+{#        <label for="retail_store_pan">Enter store PAN number</label>#}
+{#        <input type="text" name="retail_store_pan" id="retail_store_pan">#}
+{##}
+{#        <label for="retail_store_bank_account">Enter bank account number</label>#}
+{#        <input type="text" name="retail_store_bank_account" id="retail_store_bank_account">#}
+{##}
+{#        <label for="retail_store_name">Enter Retail store name</label>#}
+{#        <input type="text" name="retail_store_name" id="retail_store_name">#}
+{##}
+{#        <label for="retail_store_ifsc">Enter ifsc number</label>#}
+{#        <input type="text" name="retail_store_ifsc" id="retail_store_ifsc">#}
+{##}
+{#        <label for="retail_store_upi_id">Enter UPI ID</label>#}
+{#        <input type="text" name="retail_store_upi_id" id="retail_store_upi_id">#}
+
+        <input type="submit" value="Submit Information">
+    </form>
+</body>
+</html>

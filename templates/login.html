@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
+{% extends 'base.html' %}
 
-<body>
+{% block title %} Login {% endblock title %}
+
+{% block body %}
     <form action='{% url 'accounts:login' %}' method="POST">
         {% csrf_token %}
         <label for="login_email">Enter Email</label>
@@ -14,5 +11,4 @@
         <input type="password" name="login_password" id="Login_password">
         <input type="submit" value="Login">
     </form>
-</body>
-</html>
+{% endblock body %}

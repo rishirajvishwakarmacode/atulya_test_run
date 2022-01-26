@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Registration Page</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock title %}
+
+{% block body %}
     <form action={%url 'accounts:register'%} method="post">
         {% csrf_token %}
         <label for="registration_email" >Enter your Email</label>
@@ -20,5 +18,7 @@
         <input type="password" id="password_field" name="password_field">
         <input type="submit" value="Register">
     </form>
-</body>
-</html>
+    <a href="{% url 'accounts:login' %}">
+        <button>Login</button>
+    </a>
+{% endblock body %}

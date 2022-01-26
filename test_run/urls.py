@@ -18,6 +18,8 @@ from django.urls import path
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import include
+from django.conf import settings
+from django.conf.urls.static import static
 
 #=====================================Home page===============================================
 def home(request):
@@ -26,7 +28,10 @@ def home(request):
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', home),
+    path('admin/', admin.site.urls, name = 'admin'),
+    path('', home, name='home'),
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('retailer/', include('retailer.urls', namespace='retailer')),
+    path('wholesaler/', include('wholesaler.urls', namespace='wholesaler')),
+    path('manufacturer/', include('manufacturer.urls', namespace='manufacturer'))
 ]

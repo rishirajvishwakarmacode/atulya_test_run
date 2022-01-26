@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Inventory {% endblock title %}
+
+{% block body %}
+    <div style="display: flex; flex-direction: row">
+    <div>
+        <form method="post" action="{% url 'retailer:inventory' %}">
+
+            <input type="text" name="product_search" placeholder="Search For Products">
+            <a href="{% url 'retailer:inventory' %}"><button>Search</button></a>
+
+        </form>
+    </div>
+    <div>
+        <table>
+        {% for product in products_object %}
+            <tr>
+                <th>{{ product }}</th>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+    </div>
+{% endblock body %}
