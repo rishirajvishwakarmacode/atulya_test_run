@@ -3,19 +3,34 @@
 {% block title %} Retailer Dashboard {% endblock title %}
 
 {% block body %}
+    <div id="operation_area">
+        <h3> {{ user_name }} </h3>
+    </div>
+
+{# navigation buttons #}
+
     <a href="{% url 'accounts:logout' %}">
         <button>Logout</button>
     </a>
     <a href="{% url 'retailer:inventory' %}">
         <button>Inventory</button>
     </a>
+    <a href="{% url 'retailer:orderlist' %}" }><button>Order List</button>
+    </a>
+
+{#  customers segment   #}
+
+    <div id="customer_orders" style="height: 420px; width: 50%; border:solid 2px">
+        <span>Customer Orders</span>
+    </div>
+
+    <div id="billing_div" >
+
+    </div>
     <div id="wholesaler_list">
 
     </div>
 
-    <div id="operation_area">
-        <h3> {{ user_name }} </h3>
-    </div>
 
     <div id="customer_list">
     </div>

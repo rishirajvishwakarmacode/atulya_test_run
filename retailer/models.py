@@ -50,6 +50,14 @@ class retailer_inventory(models.Model):
     packed_products = models.ManyToManyField(Product_packed, null=True, blank=True)
     unpacked_products = models.ManyToManyField(Product_unpacked, null= True, blank=True)
 
+    def __str__(self):
+        return (str(self.user_id) + ' ' + str(self.packed_products))
+
+class retailer_order_list(models.Model):
+    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE)
+    packed_products = models.ManyToManyField(Product_packed, null=True, blank=True)
+    unpacked_products = models.ManyToManyField(Product_unpacked, null= True, blank=True)
+
 
 
 
