@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from accounts.models import customUser
 from .models import *
 from .models import retailer_inventory as inventory_model
 from .forms  import retailer_details_form
-
 from products.models import Product_packed, Product_unpacked
+from products.views import *
 
 # Create your views here.
 @login_required
@@ -55,15 +56,11 @@ def fill_store_information(request):
 @login_required
 def retailer_inventory(request):
     user = request.user.user_id
-    if request.method == "POST":
-        ptdbsrch = request.POST['product_search']
-        if ptdbsrch is not None:
-            products = Product_packed.objects.filter(name__contains=ptdbsrch)
-            for product in products:
-                product_list.append(product)
-            print(product_list)
     if request.method == "GET":
-        products = inventory_model.objects.filter(user_id = user)
+        domain = inventory_model.objects.get(user_id = user)
+        products = domain.packed_products.all()
+        # product_list = [product for product in products.user_id ]
+        # print(product_list)
         print(products)
         context = {
             'user': request.user.user_id,
@@ -71,3 +68,27 @@ def retailer_inventory(request):
             'products_object': products,
         }
         return render(request, 'inventory_template.html', context)
+
+@login_required
+def add_inventory(request):
+    user = request.user.user_id
+    if request.method == "POST":
+        search_term = request.POST['product_search']
+        matching_products = search_products(request, search_term)   #from products.views
+        return render(request, 'product_addition.html', {'products': matching_products})
+
+
+        # return render(request, 'product_addition.html', {'loaded_products': loaded_products})
+
+@login_required
+def order_list (request):
+    user = request.user.user_id
+    if request.method == "GET":
+        orderlist = retailer_order_list.objects.get(user_id = user)
+        list = orderlist.packed_products.all()
+        context = {
+            'user': user,
+            'user_email': request.user.email,
+            'list' : list,
+        }
+        return render(request, 'order_list.html', context)

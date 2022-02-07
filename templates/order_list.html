@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Order List
+{% endblock title %}
+
+{% block body %}
+  <form method="post">
+
+  </form>
+
+    <div>
+    <table>
+        <th>
+            <tr>Products</tr>
+            <tr>Wholesaler</tr>
+            <tr>Quantity</tr>
+        </th>
+        {% for item in list %}
+            <th>
+            <tr>{{ item.name }}</tr>
+            <tr>{{ item.name }}</tr>
+            <tr>{{ item.price }}</tr>
+            </th>
+        {% endfor %}
+    </table>
+    {{ list. }}
+    </div>
+{% endblock body %}

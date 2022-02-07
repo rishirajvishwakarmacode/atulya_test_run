@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Products {% endblock title %}
+
+{% block body %}
+
+    <div>
+        {% if products is not None %}
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>price</th>
+                </tr>
+            {% for item in products %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.brand }}</td>
+                    <td>{{ item.price }}</td>
+                </tr>
+
+            {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+
+{% endblock body %}
