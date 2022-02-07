@@ -3,23 +3,35 @@
 {% block title %} Inventory {% endblock title %}
 
 {% block body %}
+
     <div style="display: flex; flex-direction: row">
     <div>
-        <form method="post" action="{% url 'retailer:inventory' %}">
-
+        <form method="post" action="{% url 'retailer:add_to_inventory' %}">
+            {% csrf_token %}
             <input type="text" name="product_search" placeholder="Search For Products">
-            <a href="{% url 'retailer:inventory' %}"><button>Search</button></a>
-
+            <input type="submit" value="Search">
         </form>
     </div>
     <div>
         <table>
+            <tr>
+                <th> Product </th>
+                <th> Brand </th>
+                <th> MRP </th>
+            </tr>
+
         {% for product in products_object %}
             <tr>
-                <th>{{ product }}</th>
+                <td>{{ product.name }}</td>
+                <td>{{ product.brand }}</td>
+                <td>{{ product.mrp }}</td>
             </tr>
         {% endfor %}
         </table>
     </div>
     </div>
 {% endblock body %}
+
+{% block javascript %}
+
+{% endblock javascript %}

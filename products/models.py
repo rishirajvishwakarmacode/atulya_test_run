@@ -26,6 +26,7 @@ class Product_packed(models.Model):
     igst = models.CharField(max_length=40, null=False)
     description = models.TextField(null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    catagory = models.CharField(max_length=45,null=True,blank=True, choices = (('grocery', 'Grocery'), ('beverage', 'Beverage'), ('snacks', 'Snacks'), ('household', 'Household'), ('personalcare', 'Personal Care')))
 
     def __str__(self):
         return ('product: ' + str(self.name) )
