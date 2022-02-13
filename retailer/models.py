@@ -3,7 +3,7 @@ from accounts.models import customUser
 from products.models import Product_packed, Product_unpacked
 # Create your models here.
 class business_financial_information(models.Model):
-    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE ,related_name="retailer_business_financial_information_related", related_query_name="retailer_business_financial_informations")
     PAN = models.CharField(max_length=10, primary_key=True)
     GSTIN = models.CharField(max_length=15, null=False)
     IFSC = models.CharField(max_length=45, null=False)
@@ -18,10 +18,10 @@ class business_financial_information(models.Model):
         return (str(self.user_id))
 
 class payment_information(models.Model):
-    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE,related_name="retailer_payment_information_realated", related_query_name="retailer_payment_informations")
 
 class credit_card(models.Model):
-    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE,related_name="retailer_credit_card_related",related_query_name="retailer_credit_cards")
     mobile = models.IntegerField(primary_key=True, null=False)
     ccard_number = models.IntegerField()
     exp_date = models.DateField()
@@ -32,7 +32,7 @@ class credit_card(models.Model):
         return (self.user_id)
 
 class debit_card(models.Model):
-    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE,related_name="retailer_debit_card_related",related_query_name="retailer_debit_cards")
     mobile = models.IntegerField(primary_key=True, null=False)
     dcard_number = models.IntegerField()
     exp_date = models.DateField()
@@ -43,10 +43,10 @@ class debit_card(models.Model):
         return (self.user_id)
 
 class owner_details(models.Model):
-    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE,related_name="retailer_owner_details_related",related_query_name="retailer_owner_detailss")
 
 class retailer_inventory(models.Model):
-    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE ,related_name="retailer_retailer_inventory_related",related_query_name="retailer_retailer_inventorys")
     packed_products = models.ManyToManyField(Product_packed, null=True, blank=True)
     unpacked_products = models.ManyToManyField(Product_unpacked, null= True, blank=True)
 
@@ -54,7 +54,7 @@ class retailer_inventory(models.Model):
         return (str(self.user_id) + ' ' + str(self.packed_products))
 
 class retailer_order_list(models.Model):
-    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(customUser, on_delete=models.CASCADE,related_name="retailer_retailer_order_list_related",related_query_name="retailer_retailer_order_lists")
     packed_products = models.ManyToManyField(Product_packed, null=True, blank=True)
     unpacked_products = models.ManyToManyField(Product_unpacked, null= True, blank=True)
 

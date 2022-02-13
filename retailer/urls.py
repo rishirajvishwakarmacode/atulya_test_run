@@ -9,6 +9,6 @@ urlpatterns = [
     path('fill_store_details/', views.fill_store_information, name='fill_details'),
     path('inventory/', views.retailer_inventory, name='inventory'),
     path('inventory/addtoinventory', views.add_inventory, name='add_to_inventory'),
-    path('orderlisy/', views.order_list, name='orderlist')
+    path('orderlist/', views.order_list, name='orderlist')
 
 ]
