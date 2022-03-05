@@ -8,5 +8,7 @@ from . import views
 app_name = 'wholesaler'
 
 urlpatterns = [
-
+    path('dashboard/', views.dashboard, name='wsldbd'),
+    path('inventory/', views.showinvt, name='wslinvt'),
+    path('profile/', views.showprofile, name='wslprof'),
 ]

@@ -20,7 +20,7 @@ def login(request):
             user_info = customUser.objects.get(email = email)
             print(user_info)
             if user_info.type == 'retailer':
-                return redirect('retailer:dashboard')
+                return redirect('retailer:retdbd')
                 print('user_looged in to the retailer section')
             elif user_info.type == 'wholesaler':
                 return redirect('wholesaler:dashboard')

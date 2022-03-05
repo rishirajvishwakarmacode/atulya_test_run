@@ -4,7 +4,7 @@ import PIL
 
 # Create your models here.
 class Brand(models.Model):
-    id = models.UUIDField(default=uuid.uuid4(), primary_key=True, unique=True)
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True)
     name = models.CharField(max_length=45, null=False)
     description = models.TextField(null=True, blank=True)
 
@@ -14,16 +14,16 @@ class Brand(models.Model):
 
 
 class Product_packed(models.Model):
-    id = models.UUIDField(default=uuid.uuid4(), primary_key=True, unique=True)
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True)
     name = models.CharField(max_length=50, null=False)
     weight = models.CharField(max_length=40, null=False)
     image = models.ImageField(null=True, blank=True)
     mrp = models.CharField(max_length=40, null=False)
     price = models.CharField(max_length=40, null=False)
-    hsn_code = models.CharField(max_length=45, null=False)
-    cgst = models.CharField(max_length=40, null=False)
-    sgst = models.CharField(max_length=40, null=False)
-    igst = models.CharField(max_length=40, null=False)
+    hsn_code = models.CharField(max_length=45, null=True)
+    cgst = models.CharField(max_length=40, null=True)
+    sgst = models.CharField(max_length=40, null=True)
+    igst = models.CharField(max_length=40, null=True)
     description = models.TextField(null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     catagory = models.CharField(max_length=45,null=True,blank=True, choices = (('grocery', 'Grocery'), ('beverage', 'Beverage'), ('snacks', 'Snacks'), ('household', 'Household'), ('personalcare', 'Personal Care')))
@@ -33,7 +33,7 @@ class Product_packed(models.Model):
 
 
 class Product_unpacked(models.Model):
-    id = models.UUIDField(default=uuid.uuid4(), primary_key=True, unique=True)
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True)
     name = models.CharField(max_length=50, null=False)
     image = models.ImageField(null=True, blank=True)
     price = models.CharField(max_length=40, null=False)
