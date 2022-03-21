@@ -23,7 +23,7 @@ def login(request):
                 return redirect('retailer:retdbd')
                 print('user_looged in to the retailer section')
             elif user_info.type == 'wholesaler':
-                return redirect('wholesaler:dashboard')
+                return redirect('wholesaler:wsldbd')
             elif user_info.type == 'manufacturer':
                 return redirect('manufacturer:dashboard')
             else:

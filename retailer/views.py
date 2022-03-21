@@ -1,8 +1,13 @@
+import products.views
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from accounts.models import customUser
 from .models import retinvt
 from django.shortcuts import render
-#
+from products.views import search_products, getpdt
+from django.http import HttpResponse, JsonResponse
+from .forms import addproductForm
+
 @login_required
 def getinfo(request):
     user = customUser.objects.get(user_id = request.user.user_id)
@@ -15,9 +20,10 @@ def dashboard(request):
     inventory = getinvt(request)
     print(inventory)
     info_dict = {
-        'inventory' : inventory
+        'inventory' : inventory,
+
     }
-    return render(request, 'dist/static/index.html', info_dict)
+    return render(request, 'basedboard.html', info_dict)
 
 @login_required
 def getinvt(request):
@@ -30,18 +36,32 @@ def getinvt(request):
 def showinvt(request):
     inventory = getinvt(request)
     invt_dict = {
-        'inventory' : inventory
+        'inventory' : inventory,
+        'addpdtform': addproductForm
     }
-    return render(request, 'inventory_template.html', invt_dict)
+    print(invt_dict)
+    return render(request, 'rinvttemplate.html', invt_dict)
 
 @login_required
 def showprofile(request):
     return render(request, 'dist/static/pages-profile.html')
 
+@login_required
+def searchpdt(request):
+    if request.method == "POST":
+        term = request.POST['searchterm']
+        print(term)
+        return(getpdt(request, term))
 
 @login_required
 def addpdt(request):
-    pass
+    if request.method == "POST":
+        id = request.POST['pdtid']
+        sellprice = request.POST['sellprice']
+    user = getinfo(request)
+    domain = retinvt.objects.filter(use_id = user.user_id)
+    product = products.views.get_pdt_id(request, id)
+    domain.packed_products.add(product, through_defaults = {'available':True, 'sellprice':sellprice})
 
 @login_required
 def showorders(request):

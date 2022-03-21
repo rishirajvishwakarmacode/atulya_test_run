@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import customUser
-from products.models import Product_packed, Product_unpacked
+from products.models import Product_packed, Product_unpacked, Brand
 # Create your models here.
 class retbi(models.Model):
     user_id = models.ForeignKey(customUser, on_delete=models.CASCADE)
@@ -35,12 +35,16 @@ class retproddtl(models.Model):
     def __str__(self):
         return (str(self.retailer) + "|" + str(self.packed_product))
 
-
-
-
-
-
-
-
-
+# class conwsl(models.Model):
+#     user_id = models.ForeignKey(customUser, on_delete=models.CASCADE)
+#     wholesalers = models.ManyToManyField(customUser, through='conwslinfo')
+#
+#     def __str__(self):
+#         return (str(self.user_id) + "Connected Wholesalers")
+#
+# class conwslinfo(models.Model):
+#     retailer = models.ForeignKey(conwsl, on_delete=models.CASCADE)
+#     wholesaler = models.ForeignKey(customUser, on_delete=models.CASCADE)
+#     brands = models.ManyToManyField(Brand)
+#
 

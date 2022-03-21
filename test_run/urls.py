@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import products.views
 from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponse
@@ -33,5 +34,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('retailer/', include('retailer.urls', namespace='retailer')),
     path('wholesaler/', include('wholesaler.urls', namespace='wholesaler')),
-    path('manufacturer/', include('manufacturer.urls', namespace='manufacturer'))
+    path('manufacturer/', include('manufacturer.urls', namespace='manufacturer')),
+    path('products/', include('products.urls', namespace='products')),
+
+    path('pdtid/<slug:id>', products.views.getpdtbyid),
 ]

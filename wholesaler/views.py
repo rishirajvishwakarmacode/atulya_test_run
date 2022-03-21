@@ -3,7 +3,8 @@ from django.shortcuts import render
 from .models import *
 from django.contrib.auth.decorators import login_required
 from retailer.views import getinfo
-# Create your views here.
+from products.models  import Product_packed, Product_unpacked
+# Create your views here. views for wholesalers
 
 @login_required
 def getinfo(request):
@@ -12,7 +13,7 @@ def getinfo(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'dist/static/index.html')
+    return render(request, 'basewdboard.html')
 
 @login_required
 def getinvt(request):

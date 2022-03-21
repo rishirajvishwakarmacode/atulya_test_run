@@ -18,6 +18,7 @@
 
 	<link href="{% static 'css/app.css' %}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
  <body>
     <div class="row">
@@ -293,4 +294,4 @@
     </div>
  </body>
 <script src="{% static 'js/app.js' %}"></script>
-<script>{% block javascript %}{% endblock javascript %}</script>
+{% block javascript %}{% endblock javascript %}

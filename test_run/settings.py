@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'wholesaler',
     'manufacturer',
     'products',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

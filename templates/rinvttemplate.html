@@ -1,0 +1,111 @@
+{% extends 'basedboard.html' %}
+
+{% block title %} Retailer Inventory {% endblock title %}
+
+{% block bodycontent %}
+    <div class="row vh-50">
+        <div class="w-25">
+            <form>
+                {% csrf_token %}
+                <div class="col">
+                    <input type="text" method = 'POST' action="{% url 'retailer:retinvt' %}" class="form-control w-75" name="searchterm" id="pdtsrch">
+                    <input type="button" value="Search" class="btn btn-success" id="srchbtn">
+                </div>
+            </form>
+        </div>
+        <div id="prddisplay"  class="col-12 col-lg-8 col-xxl-9 d-flex card flex-fill w-75 scrolly">
+           <table class="table table-hover my-0">
+               <thead>
+                <tr>
+                    <td>Product Id</td>
+                    <td>Product Name</td>
+                    <td>MRP</td>
+                    <td>Action</td>
+                </tr>
+               </thead>
+               <tbody id="tablebody">
+                {#                dynamically from the ajax query below                  #}
+               </tbody>
+           </table>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-8 col-xxl-9 d-flex mr-auto">
+        <div class="card flex-fill">
+            <div class="card-header">
+
+                <h5 class="card-title mb-0">Latest Projects</h5>
+            </div>
+            <table class="table table-hover my-0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th class="d-none d-xl-table-cell">Price</th>
+                        <th class="d-none d-xl-table-cell">Catagory</th>
+                        <th>Status</th>
+                        <th class="d-none d-md-table-cell"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in inventory %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td class="d-none d-xl-table-cell">{{ item.price }}</td>
+                        <td class="d-none d-xl-table-cell">{{ item.catagory }}</td>
+                        <td><span class="badge bg-success">Done</span></td>
+                        <td class="d-none d-md-table-cell">Vanessa Tucker</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <form>
+        {% csrf_token %}
+        {{ addpdtform }}
+    </form>
+{% endblock bodycontent %}
+
+{% block javascript %}
+    <script type="text/javascript">
+
+        var table =  $('#tablebody')
+        function populateTable(data){
+            var table = "" ;
+
+                for(var i in data){
+                    table += "<tr>";
+                    table += "<td>"
+                            + data[i].id +"</td>"
+                            + "<td>" + data[i].name +"</td>"
+                            + "<td>" + data[i].mrp +"</td>"
+                            + "<td>" + "<button class='btn btn-success'>Add to Inventory</button>" +"</td>" ;
+                    table += "</tr>";
+		        }
+
+            document.getElementById("tablebody").innerHTML = table;
+
+        }
+
+
+        $('#srchbtn').click(function(){
+            console.log("button Clicked");
+
+            $.ajax
+            ({
+                type : 'POST',
+                url : '{% url 'retailer:srchpdt' %}',
+                data : {
+                        searchterm:$('#pdtsrch').val(),
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success : function(pdtlist)
+                {
+                    console.log("success");
+                    populateTable(pdtlist);
+                },
+            });
+        });
+    </script>
+{% endblock javascript %}
